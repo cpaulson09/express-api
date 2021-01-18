@@ -3,7 +3,7 @@ const { Client } = require('pg')
 const router = express.Router()
 require('dotenv').config()
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
-const connectionString = `postgres://${process.env.DBUSER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.PORT}/${process.env.DB}?sslmode=require`
+const connectionString = `postgres://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DB}?sslmode=require`
 const client = new Client({connectionString: connectionString})
 
 // List Addresses
