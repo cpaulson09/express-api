@@ -11,7 +11,7 @@ app.use(cors())
 
 //get routes
 const routes = require('./routes')
-app.use('/api/db84312b-df15-4004-8225-04693953a5c5', routes)
+app.use('/api/addresses', routes)
 
 app.get('/', (req, res) => {
     res.send("Welcome to the API")
