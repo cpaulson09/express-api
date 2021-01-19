@@ -11,6 +11,8 @@ const { Client } = require('pg')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 const connectionString = `postgres://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DB}?sslmode=require`
 const client = new Client({connectionString: connectionString})
+client.connect()
+
 
 //middle ware
 app.use(bodyParser.json())
@@ -34,6 +36,7 @@ app.get('/list',   async (req, res) => {
         }
         res.status(200).send(result)
     })
+    client.end()
 })
 
 // Create Record
