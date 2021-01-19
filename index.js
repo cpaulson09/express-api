@@ -14,7 +14,7 @@ const routes = require('./routes')
 app.use('/api/addresses', routes)
 
 app.get('/', (req, res) => {
-    res.send("Welcome to the API")
+    res.send("Welcome to Con's API")
 })
 
 app.listen(port, () => {console.log(`${port}`)})
