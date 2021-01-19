@@ -1,14 +1,16 @@
 const express = require('express')
+// const dbConfig = require('./db.config')
 const { Client } = require('pg')
 const router = express.Router()
 require('dotenv').config()
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
+
 const connectionString = `postgres://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DB}?sslmode=require`
 const connectionString2 = `postgre://zoazbawbshonxy:d6d2754b952b9de69caa284427cbdf9331c8aa7bad2968f52eba21b1670aaa01@ec2-50-19-32-202.compute-1.amazonaws.com:5432/dbnks8llsin5rs?sslmode=require`
 
 // List Addresses
 router.get('/', async (req, res) => {
-    const client = new Client({ connectionString: connectionString2 })
+    const client = new Client({ connectionString: connectionString })
     client.connect()
 
     await client.query('SELECT * FROM addresses;', (err, result) => {
