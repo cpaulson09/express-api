@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 
 //set up DB
 const { Client } = require('pg')
-const router = express.Router()
+// const router = express.Router()
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
 const connectionString = `postgres://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DB}?sslmode=require`
 const client = new Client({connectionString: connectionString})
