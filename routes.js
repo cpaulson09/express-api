@@ -7,20 +7,20 @@ const connectionString = `postgres://${process.env.DBUSER}:${process.env.DBPASSW
 
 
 // List Addresses
-router.get('/', (req, res) => {
-    const client = new Client({connectionString: connectionString})
+router.get('/', async (req, res) => {
+    const client = new Client({ connectionString: connectionString })
     client.connect()
 
-    client.query('SELECT * FROM addresses;', (err, result) => {
+    await client.query('SELECT * FROM addresses;', (err, result) => {
         if (err) res.status(400).send(err)
-        res.status(200).send(result.rows)
+        else res.status(200).send(result.rows)
         client.end()
     })
 })
 
 // Create Record
 router.post('/', (req, res) => {
-    const client = new Client({connectionString: connectionString})
+    const client = new Client({ connectionString: connectionString })
     client.connect()    
     
     const {firstName, lastName, address, city, state, zip} = req.body
@@ -28,21 +28,21 @@ router.post('/', (req, res) => {
     let values = [firstName, lastName, address, city, state, zip]
     client.query(query, values, (err, result) => {
         if (err) res.status(400).send({status: 'error', message: 'Error, please try again'})
-        res.status(200).send({status: 'success', message: 'Address successfully added. Thank you!'})
+        else res.status(200).send({status: 'success', message: 'Address successfully added. Thank you!'})
         client.end()
     })
 })
 
 // Delete Record
 router.delete('/:id', (req, res) => {
-    const client = new Client({connectionString: connectionString})
+    const client = new Client({ connectionString: connectionString })
     client.connect()    
     
     const id = req.params.id
     let query = `DELETE FROM addresses WHERE id=${id}`
     client.query(query, (err, result) => {
         if (err) res.status(400).send(err)
-        res.status(200).json({status: 'success', message: 'Address successfully removed'})
+        else res.status(200).json({status: 'success', message: 'Address successfully removed'})
         client.end()
     })
 })
