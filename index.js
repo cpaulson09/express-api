@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 })
 
 // List Addresses
-app.get('/',   async (req, res) => {
+app.get('/list',   async (req, res) => {
     client.connect()
     client.query('SELECT * FROM addresses;', (err, result) => {
         if (err) {
