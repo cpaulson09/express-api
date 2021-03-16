@@ -1,2 +1,2 @@
-# express-api
-Simple NodeJS/Express API managing HTTP requests
+# My Express API
+Simple NodeJS/Express API for managing HTTP requests for multiple applications
