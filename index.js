@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res) => {
-    axios.get(`https://randomuser.me/api/?results=5000`)
-    .then(res => {
-        if (res.data){
-            return res.data.results
+    axios.get(`https://randomuser.me/api/?results=50`)
+    .then(response => {
+        if (response.data){
+            res.status(200).send(response.data.results)
         }
     })
     .catch(err => {
