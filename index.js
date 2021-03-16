@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 app.get('/users', (req, res) => {
     // res.send('here')
-    axios.get(`https://randomuser.me/api/?results=50`)
+    axios.get(`https://randomuser.me/api/?results=5000`)
     .then(response => {
         if (response.data){
             res.status(200).send(response.data.results)
